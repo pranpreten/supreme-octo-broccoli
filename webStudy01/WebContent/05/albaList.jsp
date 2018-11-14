@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@page import="kr.or.ddit.vo.AlbasengVO"%>
 <%@page import="java.util.Map.Entry"%>
 <%@page import="kr.or.ddit.web.SimpleFormProcessServlet"%>
@@ -21,8 +22,9 @@
 	</thead>
 	<tbody>
 		<%
+			Map<String, AlbasengVO> alba = (Map<String, AlbasengVO>)getServletContext().getAttribute("albasengs");
 			// 규연이가 넣은 코드 .. 문제있으면 규연이 에게...
-			for(Entry<String, AlbasengVO> entry : SimpleFormProcessServlet.albasengs.entrySet()){
+			for(Entry<String, AlbasengVO> entry : alba.entrySet()){
 				%>
 				<tr>
 					<td><%=entry.getKey() %></td>
