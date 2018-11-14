@@ -16,7 +16,7 @@
 <%
 if(StringUtils.isNotBlank(message)){
 	
-
+// 추가주석
 %>
 	alert("<%=message%>");
 <%
