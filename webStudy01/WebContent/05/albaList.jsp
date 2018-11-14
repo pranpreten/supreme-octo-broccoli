@@ -21,6 +21,7 @@
 	</thead>
 	<tbody>
 		<%
+			// 규연이가 넣은 코드 .. 문제있으면 규연이 에게...
 			for(Entry<String, AlbasengVO> entry : SimpleFormProcessServlet.albasengs.entrySet()){
 				%>
 				<tr>
