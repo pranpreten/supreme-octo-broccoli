@@ -3,7 +3,7 @@
 <%@page import="java.util.Map.Entry"%>
 <%@page import="kr.or.ddit.web.SimpleFormProcessServlet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +22,7 @@
 	</thead>
 	<tbody>
 		<%
-			Map<String, AlbasengVO> alba = (Map<String, AlbasengVO>)getServletContext().getAttribute("albasengs");
+			Map<String, AlbasengVO> alba = (Map<String, AlbasengVO>)application.getAttribute("albasengs");
 			// 규연이가 넣은 코드 .. 문제있으면 규연이 에게...
 			for(Entry<String, AlbasengVO> entry : alba.entrySet()){
 				%>
