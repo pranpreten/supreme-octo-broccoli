@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.or.ddit.web.model2.FileList;
+
 @WebServlet("/fileBrowser.do")
 public class ServerFileBrowser extends HttpServlet{
 
@@ -22,12 +24,10 @@ public class ServerFileBrowser extends HttpServlet{
 		String view = "/WEB-INF/views/fileBrowser.jsp";
 		resp.setContentType("text/html;charset=UTF-8");
 		ServletContext context = req.getServletContext();
-		File folder = new File("D:\\A_TeachingMaterial\\6.JspSrpgin\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\work\\Catalina\\localhost\\webStudy01\\org\\apache\\jsp");
-
-		String[] filenames = folder.list();
-		for(String name:filenames) {
-			System.out.println(name);
-		}
+		
+		FileList vo = new FileList();
+		String[] filenames = vo.getFileList();
+		
 		req.setAttribute("file", filenames);
 		
 		RequestDispatcher re = req.getRequestDispatcher(view);
