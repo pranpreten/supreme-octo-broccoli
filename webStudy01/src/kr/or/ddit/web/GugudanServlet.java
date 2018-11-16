@@ -15,7 +15,7 @@ public class GugudanServlet extends HttpServlet{
 		int minDan = 2;
 		int maxDan = 9;
 		if(minDanStr!=null&&minDanStr.matches("\\d")) {
-			minDan = Integer.parseInt(minDanStr);
+			minDan = Integer.parseInt(minDanStr); 
 		}
 		if(maxDanStr!=null&&maxDanStr.matches("[0-9]")) {
 			maxDan = Integer.parseInt(maxDanStr);
