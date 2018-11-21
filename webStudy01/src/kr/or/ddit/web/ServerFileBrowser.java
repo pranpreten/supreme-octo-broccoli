@@ -1,9 +1,8 @@
 package kr.or.ddit.web;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Objects;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -13,24 +12,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.ddit.web.model2.FileList;
-
 @WebServlet("/fileBrowser.do")
 public class ServerFileBrowser extends HttpServlet{
-
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String view = "/WEB-INF/views/fileBrowser.jsp";
-		resp.setContentType("text/html;charset=UTF-8");
-		ServletContext context = req.getServletContext();
+		String getFilePath = req.getParameter("filePath");
+		String fileBackPath = req.getParameter("fileBackPath");
+		ServletContext context = getServletContext();
+		String fileUrl = null;
+		if(fileBackPath==null) {
+			fileUrl = Objects.toString(getFilePath, context.getRealPath(""));
+		}else {
+			fileUrl = fileBackPath;
+		}
+		File file = new File(fileUrl);
+		req.setAttribute("fileUrl", fileUrl);
+		File[] fileList = file.listFiles();
+		req.setAttribute("fileList", fileList);
 		
-		FileList vo = new FileList();
-		String[] filenames = vo.getFileList();
+		RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/views/fileBrowser.jsp");
+		rd.forward(req, resp);
 		
-		req.setAttribute("file", filenames);
-		
-		RequestDispatcher re = req.getRequestDispatcher(view);
-		re.forward(req, resp);
 	}
+
 }
